@@ -591,7 +591,7 @@ p {
           <img class="history-image" src="Budi Utomo.jpg"
                alt="Dokumentasi Budi Utomo"
                onerror="this.alt='Foto Budi Utomo belum ditemukan';this.style.minHeight='130px'">
-          <div class="image-caption">Dokumentasi sejarah Budi Utomo</div>
+          <div class="image-caption">SEJARAH BUDI UTOMO.Sumber:(https://garuda.kemdiktisaintek.go.id/).(https://pin.it/3j1OuLfyp)</div>
         </div>
       </div>
     </div>
@@ -626,7 +626,7 @@ p {
           <img class="history-image" src="Serikat Islam.jpg"
                alt="Dokumentasi Sarekat Islam"
                onerror="this.alt='Foto Sarekat Islam belum ditemukan';this.style.minHeight='130px'">
-          <div class="image-caption">Dokumentasi Sarekat Islam</div>
+          <div class="image-caption">SEJARAH SAREKAT ISLAM.Sumber:(https://garuda.kemdiktisaintek.go.id/).(https://pin.it/7s1X7bSbM)</div>
         </div>
       </div>
     </div>
@@ -662,7 +662,7 @@ p {
           <img class="history-image" src="Indische Partij.jpg"
                alt="Dokumentasi Indische Partij"
                onerror="this.alt='Foto Indische Partij belum ditemukan';this.style.minHeight='130px'">
-          <div class="image-caption">Dokumentasi Indische Partij dan pergerakannya</div>
+          <div class="image-caption">SEJARAH INDISCHE PARTIJ.Sumber:(https://garuda.kemdiktisaintek.go.id/).(https://pin.it/4PiifAxln)</div>
         </div>
       </div>
     </div>
@@ -698,7 +698,7 @@ p {
           <img class="history-image" src="Perhimpunan Indonesia.jpg"
                alt="Dokumentasi Perhimpunan Indonesia"
                onerror="this.alt='Foto Perhimpunan Indonesia belum ditemukan';this.style.minHeight='130px'">
-          <div class="image-caption">Dokumentasi Perhimpunan Indonesia</div>
+          <div class="image-caption">SEJARAH PERHIMPUNAN INDONESIA.Sumber:(https://garuda.kemdiktisaintek.go.id/).(https://pin.it/1LeYBl2DS)</div>
         </div>
       </div>
     </div>
@@ -735,7 +735,7 @@ p {
           <img class="history-image" src="Partai Nasional Indonesia.jpg"
                alt="Dokumentasi Partai Nasional Indonesia"
                onerror="this.alt='Foto PNI belum ditemukan';this.style.minHeight='130px'">
-          <div class="image-caption">Dokumentasi Partai Nasional Indonesia</div>
+          <div class="image-caption">SEJARAH PARTAI NASIONAL INDONESIA.Sumber:(https://garuda.kemdiktisaintek.go.id/).(https://share.google/td7Aa6s0UlsPd2usF)</div>
         </div>
       </div>
     </div>
@@ -777,114 +777,4 @@ p {
           ↺ Kembali ke Sampul
         </button>
       </div>
-      <div class="footer-note">
-        Mengenang perjuangan, merawat persatuan, membangun masa depan.
-      </div>
-    </div>
-  </section>
-
-  <!-- NAVIGASI UTAMA -->
-  <nav class="bottom-nav" id="bottomNav" aria-label="Navigasi museum">
-    <button class="nav-btn" id="prevBtn" onclick="goToRoom(currentRoom - 1)">
-      ← Kembali
-    </button>
-    <div class="dots" id="dots" aria-label="Posisi ruangan"></div>
-    <button class="nav-btn" id="nextBtn" onclick="goToRoom(currentRoom + 1)">
-      Lanjut →
-    </button>
-  </nav>
-
-</div>
-
-<script>
-const rooms = Array.from(document.querySelectorAll(".room"));
-const totalRooms = rooms.length;
-let currentRoom = 0;
-let touchStartX = 0;
-let touchStartY = 0;
-
-const counter = document.getElementById("roomCounter");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-const dots = document.getElementById("dots");
-
-const roomNames = [
-  "SAMPUL",
-  "PENDAHULUAN",
-  "BUDI UTOMO",
-  "SAREKAT ISLAM",
-  "INDISCHE PARTIJ",
-  "PERHIMPUNAN INDONESIA",
-  "PNI",
-  "PENUTUP"
-];
-
-rooms.forEach((room, index) => {
-  const dot = document.createElement("span");
-  dot.className = "dot" + (index === 0 ? " active" : "");
-  dot.title = roomNames[index];
-  dots.appendChild(dot);
-});
-
-function goToRoom(number) {
-  if (number < 0 || number >= totalRooms) return;
-  
-if (number === 1) {
-  const musik = document.getElementById("musikMuseum");
-
-  if (musik && musik.paused) {
-    musik.play().catch(error => {
-      console.log("Musik gagal diputar:", error);
-    });
-  }
-}
-
-
-  rooms[currentRoom].classList.remove("active");
-  currentRoom = number;
-  rooms[currentRoom].classList.add("active");
-
-  // Kembalikan posisi scroll ke atas setiap masuk ruangan.
-  rooms[currentRoom].scrollTop = 0;
-
-  counter.textContent =
-    currentRoom === 0
-      ? "COVER"
-      : String(currentRoom).padStart(2, "0") +
-        " / " + roomNames[currentRoom];
-
-  prevBtn.disabled = currentRoom === 0;
-  nextBtn.disabled = currentRoom === totalRooms - 1;
-
-  Array.from(dots.children).forEach((dot, index) => {
-    dot.classList.toggle("active", index === currentRoom);
-  });
-}
-
-// Navigasi menggunakan tombol keyboard.
-document.addEventListener("keydown", event => {
-  if (event.key === "ArrowRight") goToRoom(currentRoom + 1);
-  if (event.key === "ArrowLeft") goToRoom(currentRoom - 1);
-});
-
-// Geser layar HP ke kiri atau kanan untuk berpindah ruangan.
-document.getElementById("museum").addEventListener("touchstart", event => {
-  touchStartX = event.changedTouches[0].clientX;
-  touchStartY = event.changedTouches[0].clientY;
-}, { passive: true });
-
-document.getElementById("museum").addEventListener("touchend", event => {
-  const deltaX = event.changedTouches[0].clientX - touchStartX;
-  const deltaY = event.changedTouches[0].clientY - touchStartY;
-
-  // Abaikan gerakan vertikal agar pengguna tetap bisa membaca teks.
-  if (Math.abs(deltaX) > 80 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
-    if (deltaX < 0) goToRoom(currentRoom + 1);
-    else goToRoom(currentRoom - 1);
-  }
-}, { passive: true });
-
-goToRoom(0);
-</script>
-</body>
-</html>
+      <div class="footer-no
